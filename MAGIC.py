@@ -47,23 +47,45 @@ test,X_test,y_test = scale_dataset(test, oversample=False)
 
 ###### kNN modeling
 
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import classification_report
+# from sklearn.neighbors import KNeighborsClassifier
+# from sklearn.metrics import classification_report
 
-knn_model = KNeighborsClassifier(n_neighbors=5)
-knn_model.fit(X_train,y_train)
-y_pred = knn_model.predict(X_test)
-print(classification_report(y_test,y_pred))
+# knn_model = KNeighborsClassifier(n_neighbors=5)
+# knn_model.fit(X_train,y_train)
+# y_pred = knn_model.predict(X_test)
+# print(classification_report(y_test,y_pred))
 
 ##### Naive Bayes modeling
 
-from sklearn.naive_bayes import GaussianNB
+# from sklearn.naive_bayes import GaussianNB
 
-nb_model = GaussianNB()
-nb_model = nb_model.fit(X_train,y_train)
+# nb_model = GaussianNB()
+# nb_model = nb_model.fit(X_train,y_train)
 
-y_pred = nb_model.predict(X_test)
-print(classification_report(y_test,y_pred))
+# y_pred = nb_model.predict(X_test)
+# print(classification_report(y_test,y_pred))
 
 
 ##### Logistic Regression modeling 
+
+# from sklearn.linear_model import LogisticRegression
+
+# lg_model = LogisticRegression()
+# lg_model = lg_model.fit(X_train,y_train)
+
+# y_pred = lg_model.predict(X_test)
+# print(classification_report(y_test,y_pred))
+
+#### Support Vector Machines (SVM)
+
+# from sklearn.svm import SVC
+
+# svm_model = SVC()
+# svm_model = svm_model.fit(X_train,y_train)
+
+# y_pred = svm_model.predict(X_test)
+# print(classification_report(y_test,y_pred))
+
+##### Neural Network
+
+import tensorflow as tf
