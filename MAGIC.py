@@ -89,3 +89,33 @@ test,X_test,y_test = scale_dataset(test, oversample=False)
 ##### Neural Network
 
 import tensorflow as tf
+
+def plot_loss(history):
+    plt.plot(history.history['loss'], label='loss')
+    plt.plot(history.history['val_loss'], label='val_loss')
+    plt.xlabel("Epoch")
+    plt.ylabel("Binary Crossentropy")
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
+def plot_accuracy(history):
+    plt.plot(history.history['accuracy'], label='accuracy')
+    plt.plot(history.history['val_accuracy'], label='val_accuracy')
+    plt.xlabel("Epoch")
+    plt.ylabel("Accuracy")
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
+nn_model = tf.keras.Sequential([
+    tf.keras.layers.Dense(32, activation="relu", input_shape = (10,)),
+    tf.keras.layers.Dense(32, activation="relu"),
+    tf.keras.layers.Dense(1, activation="sigmoid")
+])
+nn_model.compile(optimizer=tf.keras.optimizers.legacy.Adam(0.001), loss="binary_crossentropy", metrics=["accuracy"])
+
+history = nn_model.fit(X_train,y_train,epochs=100,batch_size=32,validation_split=0.2,verbose=0)
+
+plot_loss(history)
+plot_accuracy(history)
