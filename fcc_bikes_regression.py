@@ -85,18 +85,18 @@ def plot_loss(history):
 temp_normalizer = tf.keras.layers.Normalization(input_shape = (1,), axis=None)
 temp_normalizer.adapt(X_train_temp.reshape(-1))
 
-temp_nn_model = tf.keras.Sequential([
-    temp_normalizer,
-    tf.keras.layers.Dense(1)
-])
+# temp_nn_model = tf.keras.Sequential([
+#     temp_normalizer,
+#     tf.keras.layers.Dense(1)
+# ])
 
-temp_nn_model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.1), loss="mean_squared_error")
-history = temp_nn_model.fit(X_train_temp.reshape(-1),
-    y_train_temp,
-    verbose=0,
-    epochs=1000,
-    validation_data=(X_val_temp,y_val_temp)
-)
+# temp_nn_model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.1), loss="mean_squared_error")
+# history = temp_nn_model.fit(X_train_temp.reshape(-1),
+#     y_train_temp,
+#     verbose=0,
+#     epochs=1000,
+#     validation_data=(X_val_temp,y_val_temp)
+# )
 
 # plot_loss(history)
 
@@ -111,3 +111,18 @@ history = temp_nn_model.fit(X_train_temp.reshape(-1),
 
 
 #### Neural Net
+
+nn_model = tf.keras.Sequential([
+    temp_normalizer,
+    tf.keras.layers.Dense(32, activation='relu'),
+    tf.keras.layers.Dense(32, activation='relu'),
+    tf.keras.layers.Dense(1, activation='relu')
+])
+nn_model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.001), loss="mean_squared_error")
+
+history = nn_model.fit(
+    X_train_temp,y_train_temp,
+    validation_data=(X_val_temp,y_val_temp),
+    verbose=0, epochs=100
+)
+plot_loss(history)
