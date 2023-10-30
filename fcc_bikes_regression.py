@@ -168,3 +168,15 @@ def MSE(y_pred, y_real):
 print(MSE(y_pred_lr, y_test_all))
 
 print(MSE(y_pred_nn, y_test_all))
+
+ax = plt.axes(aspect="equal")
+plt.scatter(y_test_all, y_pred_lr, label = "Lin Reg Preds")
+plt.scatter(y_test_all, y_pred_nn, label = "NN Preds")
+plt.xlabel("True Values")
+plt.ylabel("Predictions")
+lims = [0, 1800]
+plt.xlim(lims)
+plt.ylim(lims)
+plt.legend()
+_ = plt.plot(lims, lims, c = "red")
+plt.show()
